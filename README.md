@@ -82,13 +82,18 @@ Congratulations! You solved the Wordle in 5 attempts.
 ## Getting Started
 
 ### Prerequisites
-- [.NET SDK](https://dotnet.microsoft.com/download) (version 6.0 or higher).
+- [.NET SDK](https://dotnet.microsoft.com/download) (version 7.0 or higher).
+
+### Libraries
+- Newtonsoft.Json (v13.0)
+
 
 ### Installation
 1. Clone the repository:
-   git clone https://github.com/BSweet16/WordleSolver.git
+- git clone https://github.com/BSweet16/WordleSolver.git
 2. Navigate to the project directory:
-    cd WordleSolver
+- cd WordleSolver
+3. Build and Run to Enjoy!
 
 ### License
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/BSweet16/WordleSolver/blob/main/LICENSE) file for details.
