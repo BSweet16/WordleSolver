@@ -12,22 +12,27 @@ Attempt #1
 Guess: CLEAR
 Enter feedback (G for green, Y for yellow, X for gray): 
 XXXXX
+
 Attempt #2
 Guess: DINGO
 Enter feedback (G for green, Y for yellow, X for gray): 
 XXGXX
+
 Attempt #3
 Guess: FUNKY
 Enter feedback (G for green, Y for yellow, X for gray): 
 XGGXG
+
 Attempt #4
 Guess: BUNNY
 Enter feedback (G for green, Y for yellow, X for gray): 
 XGGGG
+
 Attempt #5
 Guess: SUNNY
 Enter feedback (G for green, Y for yellow, X for gray): 
 GGGGG
+
 Congratulations! You solved the Wordle in 5 attempts.
 ```
 
