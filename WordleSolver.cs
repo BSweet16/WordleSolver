@@ -32,6 +32,9 @@ class WordleSolver
         while (attempts < 6 && !solved)
         {
             attempts++;
+            if (attempts > 1){
+                Console.WriteLine();
+            }
             Console.WriteLine($"Attempt #{attempts}");
 
             // Get the best guess based on the current possible words
