@@ -9,26 +9,21 @@ A C# application designed to solve Wordle puzzles efficiently by narrowing down 
 Welcome to the Wordle Solver!
 Word list loaded successfully.
 Attempt #1
-Guess: CLEAR
-Enter feedback (G for green, Y for yellow, X for gray): 
+Guess: ALERT
+Enter feedback (G for green, Y for yellow, X for gray):
 XXXXX
+
 Attempt #2
-Guess: DINGO
-Enter feedback (G for green, Y for yellow, X for gray): 
-XXGXX
+Guess: NOISY
+Enter feedback (G for green, Y for yellow, X for gray):
+YXXYG
+
 Attempt #3
-Guess: FUNKY
-Enter feedback (G for green, Y for yellow, X for gray): 
-XGGXG
-Attempt #4
-Guess: BUNNY
-Enter feedback (G for green, Y for yellow, X for gray): 
-XGGGG
-Attempt #5
 Guess: SUNNY
-Enter feedback (G for green, Y for yellow, X for gray): 
+Enter feedback (G for green, Y for yellow, X for gray):
 GGGGG
-Congratulations! You solved the Wordle in 5 attempts.
+
+Congratulations! You solved the Wordle in 3 attempts.
 ```
 
 
