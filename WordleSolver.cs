@@ -117,6 +117,22 @@ class WordleSolver
         {
             bool isValid = true;
 
+            // Track the minimum number of occurrences for each letter in the target word
+            Dictionary<char, int> minLetterCounts = new Dictionary<char, int>();
+
+            // Check for green and yellow feedback to determine minimum letter counts
+            for (int i = 0; i < 5; i++)
+            {
+                char guessedChar = guess[i];
+                if (feedback[i] == 'G' || feedback[i] == 'Y')
+                {
+                    if (minLetterCounts.ContainsKey(guessedChar))
+                        minLetterCounts[guessedChar]++;
+                    else
+                        minLetterCounts[guessedChar] = 1;
+                }
+            }
+
             // Check for green feedback (correct letter and position)
             for (int i = 0; i < 5; i++)
             {
@@ -148,27 +164,23 @@ class WordleSolver
                     // If the letter appears in the word but is marked as gray, it's invalid
                     if (word.Contains(guess[i].ToString()))
                     {
-                        isValid = false;
-                        break;
+                        // Exception: If the letter appears in the word but is already accounted for by green/yellow feedback, it's valid
+                        if (!minLetterCounts.ContainsKey(guess[i]) || word.Count(c => c == guess[i]) > minLetterCounts[guess[i]])
+                        {
+                            isValid = false;
+                            break;
+                        }
                     }
                 }
             }
 
-            // Handle repeated letters
-            // For example, if the guess has two 'N's and one is green, the other must be accounted for
-            for (int i = 0; i < 5; i++)
+            // Ensure the word contains at least the minimum number of occurrences for each letter
+            foreach (var kvp in minLetterCounts)
             {
-                if (feedback[i] == 'G' || feedback[i] == 'Y')
+                if (word.Count(c => c == kvp.Key) < kvp.Value)
                 {
-                    char guessedChar = guess[i];
-                    int countInGuess = guess.Count(c => c == guessedChar);
-                    int countInWord = word.Count(c => c == guessedChar);
-
-                    if (countInWord < countInGuess)
-                    {
-                        isValid = false;
-                        break;
-                    }
+                    isValid = false;
+                    break;
                 }
             }
 
