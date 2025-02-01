@@ -219,9 +219,13 @@ class WordleSolver
             {
                 if (uniqueLetters.Add(c)) // Only count each letter once
                 {
-                    score += letterFrequency.ContainsKey(c) ? letterFrequency[c] : 0;
+                    score += letterFrequency.TryGetValue(c, out int value) ? value : 0;
                 }
             }
+
+            // Prioritize words with more vowels
+            int vowelCount = word.Count(c => "AEIOU".Contains(c));
+            score += vowelCount * 100; // Add a bonus for vowels
 
             if (score > maxScore)
             {
