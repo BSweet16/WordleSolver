@@ -3,6 +3,7 @@
 A C# application designed to solve Wordle puzzles efficiently by narrowing down possible words based on user feedback. This program uses a comprehensive list of 5-letter English words and employs a smart algorithm to guess the target word in the fewest attempts possible.
 
 ---
+![image](https://github.com/user-attachments/assets/1cd912fe-3f94-4cf8-9a9c-09eefcc79826)
 
 ## Example Output
 ```
