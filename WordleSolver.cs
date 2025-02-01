@@ -9,8 +9,9 @@ class WordleSolver
     {
         Console.WriteLine("Welcome to the Wordle Solver!");
 
-        // Load a list of known english words
+        // Use the static word list instead of fetching from an API
         List<string> wordList = WordList.Words;
+
         if (wordList == null || wordList.Count == 0)
         {
             Console.WriteLine("Word list is empty. Exiting.");
@@ -19,26 +20,27 @@ class WordleSolver
 
         Console.WriteLine("Word list loaded successfully.");
 
+        // Get the best starting word
+        string startingWord = GetBestStartingWord(wordList);
+        Console.WriteLine($"Best starting word: {startingWord}");
+
         // Start solving
-        SolveWordle(wordList);
+        SolveWordle(wordList, startingWord);
     }
 
-    private void SolveWordle(List<string> wordList)
+    private void SolveWordle(List<string> wordList, string startingWord)
     {
         int attempts = 0;
         bool solved = false;
-        List<string> possibleWords = new List<string>(wordList); // Words that could still be the target
+        List<string> possibleWords = new List<string>(wordList);
 
         while (attempts < 6 && !solved)
         {
             attempts++;
-            if (attempts > 1){
-                Console.WriteLine();
-            }
             Console.WriteLine($"Attempt #{attempts}");
 
-            // Get the best guess based on the current possible words
-            string guess = GetBestGuess(possibleWords);
+            // Use the starting word for the first attempt
+            string guess = (attempts == 1) ? startingWord : GetBestGuess(possibleWords);
             Console.WriteLine($"Guess: {guess}");
 
             // Get feedback from the user
@@ -189,5 +191,45 @@ class WordleSolver
         }
 
         return newPossibleWords;
+    }
+
+    private string GetBestStartingWord(List<string> wordList)
+    {
+        // Define the frequency of letters in 5-letter words
+        Dictionary<char, int> letterFrequency = new Dictionary<char, int>
+    {
+        { 'E', 1233 }, { 'A', 979 }, { 'R', 899 }, { 'O', 754 }, { 'T', 729 },
+        { 'L', 719 }, { 'I', 671 }, { 'S', 669 }, { 'N', 575 }, { 'C', 477 },
+        { 'U', 467 }, { 'D', 393 }, { 'H', 389 }, { 'M', 374 }, { 'P', 365 },
+        { 'Y', 362 }, { 'G', 356 }, { 'B', 349 }, { 'K', 292 }, { 'F', 230 },
+        { 'W', 228 }, { 'V', 178 }, { 'Z', 128 }, { 'X', 78 }, { 'J', 72 },
+        { 'Q', 56 }
+    };
+
+        // Find the word with the highest total letter frequency
+        string bestWord = wordList[0];
+        int maxScore = 0;
+
+        foreach (string word in wordList)
+        {
+            int score = 0;
+            HashSet<char> uniqueLetters = new HashSet<char>();
+
+            foreach (char c in word)
+            {
+                if (uniqueLetters.Add(c)) // Only count each letter once
+                {
+                    score += letterFrequency.ContainsKey(c) ? letterFrequency[c] : 0;
+                }
+            }
+
+            if (score > maxScore)
+            {
+                maxScore = score;
+                bestWord = word;
+            }
+        }
+
+        return bestWord;
     }
 }

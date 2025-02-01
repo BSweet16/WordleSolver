@@ -69,6 +69,34 @@ Congratulations! You solved the Wordle in 3 attempts.
 
 ### 4. **Optimal Guessing**
    - The solver prioritizes words with the most common letters to maximize the chances of getting useful feedback.
+   - Starts with the optimal starting word based on the following information.
+
+   To optimize the starting word for the Wordle solver, we need to choose a word that provides the maximum information about the target word. This means selecting a word that:
+   1. Contains the most common letters in the English language.
+   2. Maximizes the number of unique letters to increase the chances of getting useful feedback.
+   3. Balances vowel and consonant distribution to cover a wide range of possibilities.
+
+    **Strategy for Choosing the Starting Word:**
+    1. Letter Frequency Analysis:
+        * Use a list of the most common letters in 5-letter English words.
+        * Prioritize words that contain these letters.
+    2. Unique Letters:
+        * Choose a word with as many unique letters as possible to maximize the chances of getting feedback for different letters.
+    3. Vowel Coverage:
+        * Ensure the starting word contains multiple vowels, as most English words contain vowels.
+
+    **Most Common Letters in 5-Letter Words:**
+    Based on frequency analysis, the most common letters in 5-letter English words are:
+
+    ```
+    E, A, R, O, T, L, I, S, N, C, U, D, H, M, P, Y, G, B, K, F, W, V, Z, X, J, Q
+    ```
+
+    **Implementation:**
+    To implement this optimization, we can:
+        1. Precompute the best starting word based on letter frequency and uniqueness.
+        2. Use this word as the first guess in the solver.
+
 
 ### 5. **Winning the Game**
    - The program continues guessing until the target word is found or the maximum number of attempts (6) is reached.
